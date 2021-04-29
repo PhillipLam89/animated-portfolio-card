@@ -11,12 +11,20 @@
 
 body {
   display: grid;
-  min-height: 100vh;
   place-items: center;
+  min-height: 100vh;
   line-height: 1.6;
-  background: lightcyan
+  /* background: var(--clr-neutral-900); */
+
+ box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 2em;
+}
 .card {
   color: var(--clr-neutral-100);
   background-image: url(./test.jpg);
@@ -25,32 +33,67 @@ body {
   max-width: 35ch;
   border-radius: 1rem;
   overflow: hidden;
+   transform: scale(1);
+  transition: transform 500ms ease;
+ box-shadow: rgba(50, 50, 93, 0.25) 15px 50px 100px -20px, rgba(184, 10, 10, 0.3) 0px 30px 60px -30px, rgba(39, 133, 228, 0.35) 0px -2px 6px 0px inset;
+
+}
+.card-body {
+  margin-top: 15%;
+}
+.card:hover {
+  transform: scale(1.05);
 }
 
 .card-content {
   padding: 1.5rem;
   background: linear-gradient(
     hsl(0 0% 0% / 0 ), hsl(255 0% 50% / 0.3 ) 20%, hsl(0 0% 0% / 1)
-  )
+  );
+  transform: translateY(65%);
+  transition: transform 500ms ease;
+
+}
+
+.card-content > *:not(.card-title) {
+  opacity: 0;
+  transition: opacity 700ms linear;
+  transition-delay: 500ms;
+}
+
+.card:hover .card-content {
+  transform: translateY(0);
+  transition-delay: 250ms;
+}
+.card:hover .card-content > * {
+  opacity: 1;
+
 }
 
 .card-title {
   position: relative;
-  outline: 1px solid red;
   width: max-content;
 }
 
 .card-title::after {
   content: '';
   position: absolute;
-  height: 5px;
+  height: 10%;
   width: calc(100% + 1.5rem);
   background: var(--clr-accent-400);
   left: -1.5rem;
   bottom: 0;
+  border-radius: 10px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms ease;
 }
 
+.card:hover .card-title::after {
 
+  transform: scaleX(1);
+
+}
 
 .button {
   cursor: pointer;
